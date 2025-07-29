@@ -1,2 +1,1 @@
-# raggedy academy
-
+# Raggedy Academy
