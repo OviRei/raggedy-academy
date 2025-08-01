@@ -1,13 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdk8v78d1vamk"]
+[gd_scene load_steps=17 format=3 uid="uid://b70sxk7e623ru"]
 
-[ext_resource type="Script" uid="uid://dlooh0fmk3bs4" path="res://player/jane/scripts/player_jane.gd" id="1_4xw87"]
-[ext_resource type="Texture2D" uid="uid://dyguf1bnoxeet" path="res://player/jane/sprites/jane_sprite_sheet_02.png" id="2_p45oo"]
-[ext_resource type="PackedScene" uid="uid://sqlaowpppd42" path="res://general_nodes/state_machine/state_machine.tscn" id="3_03akn"]
-[ext_resource type="Script" uid="uid://q32u5c2r04fp" path="res://player/jane/scripts/states/idle.gd" id="4_yotwb"]
-[ext_resource type="Script" uid="uid://by3pbthmn3ow8" path="res://player/jane/scripts/states/move.gd" id="5_8qt8u"]
+[ext_resource type="Script" uid="uid://cdviovgiiaenj" path="res://enemies/ghost/ghost.gd" id="1_4xhpb"]
+[ext_resource type="Texture2D" uid="uid://bwmhodltcw3cq" path="res://enemies/ghost/ghost_sprite.png" id="1_r2mad"]
+[ext_resource type="PackedScene" uid="uid://sqlaowpppd42" path="res://general_nodes/state_machine/state_machine.tscn" id="3_ytihs"]
+[ext_resource type="Script" uid="uid://by3ujc8sqvxd" path="res://enemies/ghost/states/wander.gd" id="4_ytihs"]
+[ext_resource type="Script" uid="uid://bi5cu30cytjwj" path="res://enemies/ghost/states/follow.gd" id="5_v2tme"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_51pnn"]
-radius = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytihs"]
 
 [sub_resource type="Animation" id="Animation_03akn"]
 length = 0.001
@@ -169,34 +168,36 @@ _data = {
 &"walk_up": SubResource("Animation_4v057")
 }
 
-[node name="PlayerJane" type="CharacterBody2D" groups=["Player"]]
+[node name="Ghost" type="CharacterBody2D"]
+collision_layer = 256
 collision_mask = 16
-script = ExtResource("1_4xw87")
+motion_mode = 1
+script = ExtResource("1_4xhpb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_p45oo")
+texture = ExtResource("1_r2mad")
 hframes = 3
 vframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1.32)
-shape = SubResource("CircleShape2D_51pnn")
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_ytihs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_yotwb")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_ytihs")]
+starting_state = NodePath("Wander")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_03akn")]
-starting_state = NodePath("Idle")
+[node name="Wander" type="Node" parent="StateMachine" node_paths=PackedStringArray("follow_state")]
+script = ExtResource("4_ytihs")
+follow_state = NodePath("../Follow")
+move_speed = 40.0
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state")]
-script = ExtResource("4_yotwb")
-move_state = NodePath("../Move")
-
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("5_8qt8u")
-idle_state = NodePath("../Idle")
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state")]
+script = ExtResource("5_v2tme")
+wander_state = NodePath("../Wander")
+move_speed = 50.0

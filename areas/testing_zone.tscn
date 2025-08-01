@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://cqdyeolp88q1k"]
+[gd_scene load_steps=4 format=4 uid="uid://cqdyeolp88q1k"]
 
 [ext_resource type="PackedScene" uid="uid://dqgprpijhioql" path="res://areas/tile_maps/temp_tilemap.tscn" id="1_k82df"]
 [ext_resource type="PackedScene" uid="uid://cdk8v78d1vamk" path="res://player/jane/player_jane.tscn" id="2_3ofvs"]
+[ext_resource type="PackedScene" uid="uid://b70sxk7e623ru" path="res://enemies/ghost/ghost.tscn" id="3_v5xlg"]
 
 [node name="TestingZone" type="Node2D"]
 
@@ -10,3 +11,6 @@ tile_map_data = PackedByteArray("AAAPAAgAAgAAAAAAAAAAAAgAAgAAAAAAAAAPAAAAAgAAAAA
 
 [node name="PlayerJane" parent="." instance=ExtResource("2_3ofvs")]
 position = Vector2(247, 157)
+
+[node name="Ghost" parent="." instance=ExtResource("3_v5xlg")]
+position = Vector2(293, 164)

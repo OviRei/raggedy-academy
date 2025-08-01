@@ -13,31 +13,42 @@ config_version=5
 config/name="Raggedy Academy"
 run/main_scene="uid://cqdyeolp88q1k"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
-window/size/viewport_width=512
-window/size/viewport_height=288
+window/size/viewport_width=448
+window/size/viewport_height=252
 window/size/borderless=true
 window/size/sharp_corners=true
-window/size/window_width_override=1280
-window/size/window_height_override=960
 window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://areas/": "green",
+"res://enemies/": "red",
 "res://general_nodes/": "gray",
+"res://npcs/": "yellow",
 "res://player/": "purple",
 "res://player/jane/": "pink",
 "res://player/john/": "blue"
 }
+
+[global_group]
+
+Player=""
 
 [input]
 
@@ -81,6 +92,7 @@ escape={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_5="Walls"
+2d_physics/layer_9="Enemy"
 
 [rendering]
 

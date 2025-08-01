@@ -1,6 +1,6 @@
-extends CharacterBody2D
+class_name Ghost extends CharacterBody2D
 
-var input_vector : Vector2 = Vector2.ZERO
+@export var move_speed := 150.0
 var facing_direction := Vector2.DOWN  # Default facing direction
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -9,8 +9,6 @@ var current_animation := ""
 @onready var state_machine: Node = $StateMachine
 
 func _ready() -> void:
-	# Initilize the state machine, passing a reference of the player to the states,
-	# that way they can move and react accordingly
 	state_machine.init(self)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -18,17 +16,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
-
+	
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
-	
-	input_vector = Vector2(
-	 	Input.get_action_strength("right") - Input.get_action_strength("left"),
-		Input.get_action_strength("down") - Input.get_action_strength("up")
-	).normalized()
-
-	if input_vector != Vector2.ZERO:
-		facing_direction = input_vector  # Update last direction when moving
+	move_and_slide()
 
 func get_facing_direction() -> String:
 	if abs(facing_direction.x) > abs(facing_direction.y):
