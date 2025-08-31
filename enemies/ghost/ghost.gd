@@ -7,9 +7,11 @@ var facing_direction := Vector2.DOWN  # Default facing direction
 var current_animation := ""
 
 @onready var state_machine: Node = $StateMachine
+@onready var interaction_area: InteractionArea = $InteractionArea
 
 func _ready() -> void:
 	state_machine.init(self)
+	interaction_area.interact = Callable(self, "_on_interact")
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -36,3 +38,15 @@ func update_animation(animation_name: String, directional: bool):
 	if anim_to_play != current_animation:
 		animation_player.play(anim_to_play)
 		current_animation = anim_to_play
+		
+func _on_interact():
+	# check if a dialog is already running
+	if Dialogic.current_timeline != null:
+		return
+	if PlayerManager.current_mc == "Jane":
+		Dialogic.start('ghost_talk')
+	elif PlayerManager.current_mc == "John":
+		Dialogic.start('ghost_talk2')
+		
+	await Dialogic.timeline_ended
+	pass

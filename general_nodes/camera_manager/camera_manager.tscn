@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl5r1f17icv12"]
+
+[ext_resource type="Script" uid="uid://dndhv3a3lbk2y" path="res://general_nodes/camera_manager/camera_manager.gd" id="1_1tnyn"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_cq6vo"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_1tnyn"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_t40j8"]
+
+[sub_resource type="Resource" id="Resource_u3imj"]
+script = ExtResource("3_t40j8")
+duration = 1.0
+transition = 2
+ease = 2
+
+[node name="CameraManager" type="Node" node_paths=PackedStringArray("jane_pcam", "john_pcam")]
+script = ExtResource("1_1tnyn")
+jane_pcam = NodePath("JanePhantomCamera")
+john_pcam = NodePath("JohnPhantomCamera")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_cq6vo")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="JanePhantomCamera" type="Node2D" parent="."]
+top_level = true
+script = ExtResource("2_1tnyn")
+follow_mode = 5
+tween_resource = SubResource("Resource_u3imj")
+tween_on_load = false
+
+[node name="JohnPhantomCamera" type="Node2D" parent="."]
+top_level = true
+script = ExtResource("2_1tnyn")
+follow_mode = 5
+tween_resource = SubResource("Resource_u3imj")
+tween_on_load = false

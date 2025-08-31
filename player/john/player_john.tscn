@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://b70sxk7e623ru"]
+[gd_scene load_steps=18 format=3 uid="uid://citdkebdybgdl"]
 
-[ext_resource type="Script" uid="uid://cdviovgiiaenj" path="res://enemies/ghost/ghost.gd" id="1_4xhpb"]
-[ext_resource type="Texture2D" uid="uid://bwmhodltcw3cq" path="res://enemies/ghost/ghost_sprite.png" id="1_r2mad"]
-[ext_resource type="PackedScene" uid="uid://sqlaowpppd42" path="res://general_nodes/state_machine/state_machine.tscn" id="3_ytihs"]
-[ext_resource type="Script" uid="uid://by3ujc8sqvxd" path="res://enemies/ghost/states/wander.gd" id="4_ytihs"]
-[ext_resource type="Script" uid="uid://bi5cu30cytjwj" path="res://enemies/ghost/states/follow.gd" id="5_v2tme"]
-[ext_resource type="PackedScene" uid="uid://cpk0y5ufgw0pq" path="res://general_nodes/interaction/interaction_area/interaction_area.tscn" id="6_566vf"]
+[ext_resource type="Script" uid="uid://dlooh0fmk3bs4" path="res://player/scripts/player.gd" id="1_p1gg1"]
+[ext_resource type="Texture2D" uid="uid://2uxo08snvapq" path="res://player/john/sprites/john_sprite_sheet_02.png" id="2_p1gg1"]
+[ext_resource type="PackedScene" uid="uid://sqlaowpppd42" path="res://general_nodes/state_machine/state_machine.tscn" id="3_f8oec"]
+[ext_resource type="Script" uid="uid://q32u5c2r04fp" path="res://player/scripts/states/idle.gd" id="4_248u7"]
+[ext_resource type="Script" uid="uid://by3pbthmn3ow8" path="res://player/scripts/states/move.gd" id="5_x26sp"]
+[ext_resource type="Script" uid="uid://dqwjntprr0pnn" path="res://player/scripts/states/follow.gd" id="6_tlw6c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytihs"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_51pnn"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_03akn"]
 length = 0.001
@@ -169,44 +170,42 @@ _data = {
 &"walk_up": SubResource("Animation_4v057")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_eqcb8"]
-radius = 53.0094
-
-[node name="Ghost" type="CharacterBody2D"]
-collision_layer = 256
+[node name="PlayerJane" type="CharacterBody2D" groups=["JohnGroup"]]
+y_sort_enabled = true
 collision_mask = 16
 motion_mode = 1
-script = ExtResource("1_4xhpb")
+script = ExtResource("1_p1gg1")
+mc_name = "John"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_r2mad")
+texture = ExtResource("2_p1gg1")
 hframes = 3
 vframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 2)
-shape = SubResource("RectangleShape2D_ytihs")
+scale = Vector2(1, 1.32)
+shape = SubResource("CircleShape2D_51pnn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_yotwb")
 }
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_ytihs")]
-starting_state = NodePath("Wander")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_f8oec")]
+starting_state = NodePath("Idle")
 
-[node name="Wander" type="Node" parent="StateMachine" node_paths=PackedStringArray("follow_state")]
-script = ExtResource("4_ytihs")
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "follow_state")]
+script = ExtResource("4_248u7")
+move_state = NodePath("../Move")
 follow_state = NodePath("../Follow")
-move_speed = 40.0
 
-[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state")]
-script = ExtResource("5_v2tme")
-wander_state = NodePath("../Wander")
-move_speed = 50.0
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "follow_state")]
+script = ExtResource("5_x26sp")
+idle_state = NodePath("../Idle")
+follow_state = NodePath("../Follow")
 
-[node name="InteractionArea" parent="." instance=ExtResource("6_566vf")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("CircleShape2D_eqcb8")
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("6_tlw6c")
+idle_state = NodePath("../Idle")
+move_speed = 149.0

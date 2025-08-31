@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var mc_name : String
+
 var input_vector : Vector2 = Vector2.ZERO
 var facing_direction := Vector2.DOWN  # Default facing direction
 
@@ -12,6 +14,11 @@ func _ready() -> void:
 	# Initilize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	state_machine.init(self)
+	
+	var style: DialogicStyle = load('res://dialogic/styles/vn_style.tres')
+	style.prepare()
+	Dialogic.preload_timeline('res://dialogic/timelines/ghost_talk.dtl')
+	Dialogic.preload_timeline('res://dialogic/timelines/ghost_talk2.dtl')
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdk8v78d1vamk"]
+[gd_scene load_steps=18 format=3 uid="uid://cdk8v78d1vamk"]
 
-[ext_resource type="Script" uid="uid://dlooh0fmk3bs4" path="res://player/jane/scripts/player_jane.gd" id="1_4xw87"]
+[ext_resource type="Script" uid="uid://dlooh0fmk3bs4" path="res://player/scripts/player.gd" id="1_4xw87"]
 [ext_resource type="Texture2D" uid="uid://dyguf1bnoxeet" path="res://player/jane/sprites/jane_sprite_sheet_02.png" id="2_p45oo"]
 [ext_resource type="PackedScene" uid="uid://sqlaowpppd42" path="res://general_nodes/state_machine/state_machine.tscn" id="3_03akn"]
-[ext_resource type="Script" uid="uid://q32u5c2r04fp" path="res://player/jane/scripts/states/idle.gd" id="4_yotwb"]
-[ext_resource type="Script" uid="uid://by3pbthmn3ow8" path="res://player/jane/scripts/states/move.gd" id="5_8qt8u"]
+[ext_resource type="Script" uid="uid://q32u5c2r04fp" path="res://player/scripts/states/idle.gd" id="4_yotwb"]
+[ext_resource type="Script" uid="uid://by3pbthmn3ow8" path="res://player/scripts/states/move.gd" id="5_8qt8u"]
+[ext_resource type="Script" uid="uid://dqwjntprr0pnn" path="res://player/scripts/states/follow.gd" id="6_q2lyl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_51pnn"]
 radius = 12.0
@@ -169,9 +170,12 @@ _data = {
 &"walk_up": SubResource("Animation_4v057")
 }
 
-[node name="PlayerJane" type="CharacterBody2D" groups=["Player"]]
+[node name="PlayerJane" type="CharacterBody2D" groups=["JaneGroup"]]
+y_sort_enabled = true
 collision_mask = 16
+motion_mode = 1
 script = ExtResource("1_4xw87")
+mc_name = "Jane"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_p45oo")
@@ -188,15 +192,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_yotwb")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_03akn")]
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "follow_state")]
 script = ExtResource("4_yotwb")
 move_state = NodePath("../Move")
+follow_state = NodePath("../Follow")
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "follow_state")]
 script = ExtResource("5_8qt8u")
 idle_state = NodePath("../Idle")
+follow_state = NodePath("../Follow")
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("6_q2lyl")
+idle_state = NodePath("../Idle")
+move_speed = 149.0
