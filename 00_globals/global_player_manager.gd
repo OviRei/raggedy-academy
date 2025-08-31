@@ -52,6 +52,10 @@ func set_as_parent( _p : Node2D ) -> void:
 		inactive_player.get_parent().remove_child( inactive_player )
 	_p.add_child( inactive_player )
 
+func unparent_player( _p : Node2D ) -> void:
+	_p.remove_child( active_player )
+	_p.remove_child( inactive_player )
+
 func set_player_position( new_pos : Vector2 ) -> void:
 	active_player.global_position = new_pos
 	inactive_player.global_position = new_pos 

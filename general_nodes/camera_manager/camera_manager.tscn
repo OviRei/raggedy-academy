@@ -11,7 +11,7 @@ duration = 1.0
 transition = 2
 ease = 2
 
-[node name="CameraManager" type="Node" node_paths=PackedStringArray("jane_pcam", "john_pcam")]
+[node name="CameraManager" type="Node" node_paths=PackedStringArray("jane_pcam", "john_pcam") groups=["CameraManagerGroup"]]
 script = ExtResource("1_1tnyn")
 jane_pcam = NodePath("JanePhantomCamera")
 john_pcam = NodePath("JohnPhantomCamera")
@@ -27,13 +27,13 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="JanePhantomCamera" type="Node2D" parent="."]
 top_level = true
 script = ExtResource("2_1tnyn")
-follow_mode = 5
+follow_mode = 2
 tween_resource = SubResource("Resource_u3imj")
 tween_on_load = false
 
 [node name="JohnPhantomCamera" type="Node2D" parent="."]
 top_level = true
 script = ExtResource("2_1tnyn")
-follow_mode = 5
+follow_mode = 2
 tween_resource = SubResource("Resource_u3imj")
 tween_on_load = false

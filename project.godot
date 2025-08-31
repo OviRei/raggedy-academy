@@ -25,6 +25,7 @@ LevelManager="*res://00_globals/global_level_manager.gd"
 PlayerManager="*res://00_globals/global_player_manager.gd"
 InteractionManager="*res://00_globals/interaction_manager.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+SceneTransition="*res://gui/scene_transition/scene_transition.tscn"
 
 [dialogic]
 
