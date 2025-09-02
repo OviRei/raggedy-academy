@@ -1,7 +1,14 @@
 extends CanvasLayer
 
-@onready var save_button: Button = $VBoxContainer/SaveButton
-@onready var load_button: Button = $VBoxContainer/LoadButton
+signal shown
+signal hidden
+
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+@onready var save_button: Button = %SaveButton
+@onready var load_button: Button = %LoadButton
+@onready var item_description: Label = $Control/ItemDescription
+
 
 var is_paused : bool = false
 
@@ -24,12 +31,13 @@ func show_pause_menu():
 	get_tree().paused = true
 	visible = true
 	is_paused = true
-	save_button.grab_focus()
+	shown.emit()
 	
 func hide_pause_menu():
 	get_tree().paused = false
 	visible = false
 	is_paused = false
+	hidden.emit()
 
 func _on_save_pressed() -> void:
 	if is_paused == false:
@@ -45,3 +53,10 @@ func _on_load_pressed():
 	await LevelManager.level_loaded
 	hide_pause_menu()
 	pass
+
+func update_item_description( new_text : String ) -> void:
+	item_description.text = new_text
+	
+func play_audio( audio : AudioStream ) -> void:
+	audio_stream_player.stream = audio
+	audio_stream_player.play()

@@ -3,6 +3,8 @@ extends Node
 const PLAYER_JANE = preload("res://player/jane/player_jane.tscn")
 const PLAYER_JOHN = preload("res://player/john/player_john.tscn")
 
+const INVENTORY_DATA : InventoryData = preload("res://gui/inventory/player_inventory.tres")
+
 var active_player : CharacterBody2D
 var	inactive_player : CharacterBody2D
 var player_spawned = false

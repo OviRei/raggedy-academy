@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://cqdyeolp88q1k"]
+[gd_scene load_steps=11 format=4 uid="uid://cqdyeolp88q1k"]
 
 [ext_resource type="Script" uid="uid://dwsx8sqwpo4wc" path="res://areas/scripts/level.gd" id="1_5sgyj"]
 [ext_resource type="PackedScene" uid="uid://dqgprpijhioql" path="res://areas/tile_maps/temp_tilemap.tscn" id="1_k82df"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://c0jk3no24lhu2" path="res://areas/player_spawn/player_spawn.tscn" id="4_5sgyj"]
 [ext_resource type="PackedScene" uid="uid://bl5r1f17icv12" path="res://general_nodes/camera_manager/camera_manager.tscn" id="4_cih7q"]
 [ext_resource type="PackedScene" uid="uid://8opnicnaaw1t" path="res://areas/level_transition.tscn" id="6_gyjnj"]
+[ext_resource type="PackedScene" uid="uid://bltnqlrcxobcc" path="res://items/item_pickups/item_pickup.tscn" id="7_llppn"]
+[ext_resource type="Resource" uid="uid://gnfoxd80fijb" path="res://items/knife.tres" id="8_h6ic6"]
+[ext_resource type="Resource" uid="uid://bg0mo3m1grggs" path="res://items/job_application.tres" id="9_3jqrf"]
+[ext_resource type="Resource" uid="uid://f3ebk6iooatw" path="res://items/apple.tres" id="10_cvj0i"]
 
 [node name="TestingZone" type="Node2D"]
 y_sort_enabled = true
@@ -32,3 +36,19 @@ position = Vector2(176, 163)
 
 [node name="Ghost" parent="." instance=ExtResource("3_v5xlg")]
 position = Vector2(293, 164)
+
+[node name="ItemPickup" parent="." instance=ExtResource("7_llppn")]
+position = Vector2(115, 83)
+item_data = ExtResource("8_h6ic6")
+
+[node name="ItemPickup2" parent="." instance=ExtResource("7_llppn")]
+position = Vector2(52, 239)
+item_data = ExtResource("9_3jqrf")
+
+[node name="ItemPickup3" parent="." instance=ExtResource("7_llppn")]
+position = Vector2(407, 174)
+item_data = ExtResource("10_cvj0i")
+
+[node name="ItemPickup4" parent="." instance=ExtResource("7_llppn")]
+position = Vector2(463, 47)
+item_data = ExtResource("10_cvj0i")

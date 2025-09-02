@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=8 format=3 uid="uid://f3ebk6iooatw"]
+
+[ext_resource type="Script" uid="uid://cebq38uepteal" path="res://items/item_effects/item_effect.gd" id="1_5kqgm"]
+[ext_resource type="Script" uid="uid://xuk6clj4hu28" path="res://items/scripts/item_data.gd" id="1_pv0u0"]
+[ext_resource type="Texture2D" uid="uid://dvr8pi6tpl3ca" path="res://free_assests/All_Color_02_Legends_Of_Fantasy_32x32_(NoOutline).png" id="2_dumep"]
+[ext_resource type="AudioStream" uid="uid://bcnehhf2j4vfv" path="res://items/item_pickups/item_pickup.wav" id="2_ia5ia"]
+[ext_resource type="Script" uid="uid://rxcmss8b8nkr" path="res://items/item_effects/item_effect_heal.gd" id="2_rj1s8"]
+
+[sub_resource type="Resource" id="Resource_ia5ia"]
+script = ExtResource("2_rj1s8")
+heal_amount = 1
+audio = ExtResource("2_ia5ia")
+use_description = ""
+metadata/_custom_type_script = "uid://rxcmss8b8nkr"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmv7l"]
+atlas = ExtResource("2_dumep")
+region = Rect2(32, 128, 32, 32)
+
+[resource]
+script = ExtResource("1_pv0u0")
+name = "Apple"
+description = "Nnnnghh~ Apple"
+texture = SubResource("AtlasTexture_xmv7l")
+effects = Array[ExtResource("1_5kqgm")]([SubResource("Resource_ia5ia")])
+metadata/_custom_type_script = "uid://xuk6clj4hu28"

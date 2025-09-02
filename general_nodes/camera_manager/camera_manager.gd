@@ -34,3 +34,5 @@ func _set_follow_target():
 		
 	if player_john and !john_pcam.follow_target:
 		john_pcam.follow_target = player_john
+	
+	_switch_mc_cam()

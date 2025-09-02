@@ -208,4 +208,7 @@ follow_state = NodePath("../Follow")
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("6_tlw6c")
 idle_state = NodePath("../Idle")
-move_speed = 149.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 40.0
+target_desired_distance = 30.0

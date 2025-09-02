@@ -1,42 +1,128 @@
-[gd_scene load_steps=2 format=3 uid="uid://83hl847sgur2"]
+[gd_scene load_steps=8 format=3 uid="uid://83hl847sgur2"]
 
 [ext_resource type="Script" uid="uid://de31613q5klym" path="res://gui/pause_menu/pause_menu.gd" id="1_rwe7i"]
+[ext_resource type="Texture2D" uid="uid://btf4t5wq6ss18" path="res://items/sprites/items.png" id="2_u4fh8"]
+[ext_resource type="PackedScene" uid="uid://b4hcfxqs58xwg" path="res://gui/inventory/inventory_slot.tscn" id="3_ddhtv"]
+[ext_resource type="Script" uid="uid://c0rpuw653xd8u" path="res://gui/inventory/scripts/inventory_ui.gd" id="3_t7424"]
+[ext_resource type="Resource" uid="uid://d3nkf74d1lmlp" path="res://gui/inventory/player_inventory.tres" id="4_t7424"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7424"]
+atlas = ExtResource("2_u4fh8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nbojc"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = SubResource("AtlasTexture_t7424")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_rwe7i")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.14902, 0.14902, 0.14902, 0.729412)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -26.0
-offset_right = 34.0
-offset_bottom = 26.0
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 0.890196)
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 100.0
+offset_bottom = 124.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "[ PAUSED ]"
 
-[node name="SaveButton" type="Button" parent="VBoxContainer"]
+[node name="SaveButton" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "SAVE"
 
-[node name="LoadButton" type="Button" parent="VBoxContainer"]
+[node name="LoadButton" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "LOAD"
+
+[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "QUIT
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 26.0
+offset_right = 386.0
+offset_bottom = 114.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_nbojc")
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_t7424")
+data = ExtResource("4_t7424")
+
+[node name="InventorySlot" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_ddhtv")]
+layout_mode = 2
+
+[node name="ItemDescription" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 124.0
+offset_right = 386.0
+offset_bottom = 175.0
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 4
