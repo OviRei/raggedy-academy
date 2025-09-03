@@ -5,7 +5,6 @@ const SAVE_PATH = "user://"
 signal game_loaded
 signal game_saved
 
-
 var current_save : Dictionary = {
 	scene_path = "",
 	player = {
@@ -24,7 +23,9 @@ var current_save : Dictionary = {
 	]
 }
 
+
 func save_game():
+	#### Add Data to Update Functions Here ####
 	update_player_data()
 	update_scene_path()
 	update_item_data()
@@ -33,7 +34,6 @@ func save_game():
 	var save_json = JSON.stringify( current_save )
 	file.store_line( save_json )
 	game_saved.emit()
-	
 	
 func load_game():
 	var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.READ )
@@ -46,11 +46,16 @@ func load_game():
 	
 	await LevelManager.level_load_started
 	
+	#### Load Data Here ####
 	PlayerManager.set_player_position( Vector2(current_save.player.pos_x, current_save.player.pos_y) )
 	PlayerManager.INVENTORY_DATA.parse_save_data( current_save.items )
 	
 	await LevelManager.level_loaded
 	
+# ----------------------
+# Data to Update
+# ----------------------
+
 func update_player_data() -> void:
 	var p = PlayerManager.active_player
 	
@@ -69,4 +74,15 @@ func update_scene_path() -> void:
 func update_item_data() -> void:
 	current_save.items = PlayerManager.INVENTORY_DATA.get_save_data()
 	
+# ----------------------
+# Persistence
+# ----------------------
+
+func add_persistent_value( value : String ) -> void:
+	if check_persistent_value( value ) == false:
+		current_save.persistence.append( value )
+	
+func check_persistent_value( value : String ) -> bool:
+	var p = current_save.persistence as Array
+	return p.has( value )
 	

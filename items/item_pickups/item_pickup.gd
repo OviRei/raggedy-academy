@@ -6,7 +6,9 @@ class_name ItemPickup extends Node2D
 @onready var area_2d: Area2D = $Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var is_picked_up_data: PersistentDataHandler = $IsPickedUp
 
+var is_picked_up : bool = false
 
 
 func _ready() -> void:
@@ -14,7 +16,15 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	area_2d.body_entered.connect( _on_body_entered )
+	
+	is_picked_up_data.data_loaded.connect( set_item_state )
+	set_item_state()
 
+func set_item_state():
+	is_picked_up = is_picked_up_data.value
+	if is_picked_up:
+		visible = false
+		queue_free()
 
 func _on_body_entered( b ) -> void:
 	if b is Player:
@@ -28,6 +38,7 @@ func item_picked_up() -> void:
 	area_2d.body_entered.disconnect( _on_body_entered )
 	audio_stream_player_2d.play()
 	visible = false
+	is_picked_up_data.set_value()
 	await audio_stream_player_2d.finished
 	queue_free()
 	pass
