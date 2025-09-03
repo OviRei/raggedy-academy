@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=4 uid="uid://d2k4qkfkf5ruu"]
+[gd_scene load_steps=7 format=4 uid="uid://d2k4qkfkf5ruu"]
 
 [ext_resource type="PackedScene" uid="uid://dqgprpijhioql" path="res://areas/tile_maps/temp_tilemap.tscn" id="1_3txn5"]
 [ext_resource type="Script" uid="uid://dwsx8sqwpo4wc" path="res://areas/scripts/level.gd" id="1_5bku4"]
 [ext_resource type="PackedScene" uid="uid://bl5r1f17icv12" path="res://general_nodes/camera_manager/camera_manager.tscn" id="2_5bku4"]
+[ext_resource type="AudioStream" uid="uid://bol0c8l8ci58l" path="res://music/snowy.mp3" id="2_jgp8v"]
 [ext_resource type="PackedScene" uid="uid://c0jk3no24lhu2" path="res://areas/player_spawn/player_spawn.tscn" id="3_lhgvh"]
 [ext_resource type="PackedScene" uid="uid://8opnicnaaw1t" path="res://areas/level_transition.tscn" id="5_lhgvh"]
 
 [node name="TestingZone3" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_5bku4")
+music = ExtResource("2_jgp8v")
 
 [node name="TempTilemap" parent="." instance=ExtResource("1_3txn5")]
 y_sort_enabled = true

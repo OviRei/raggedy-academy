@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cqdyeolp88q1k"]
+[gd_scene load_steps=12 format=4 uid="uid://cqdyeolp88q1k"]
 
 [ext_resource type="Script" uid="uid://dwsx8sqwpo4wc" path="res://areas/scripts/level.gd" id="1_5sgyj"]
 [ext_resource type="PackedScene" uid="uid://dqgprpijhioql" path="res://areas/tile_maps/temp_tilemap.tscn" id="1_k82df"]
@@ -10,10 +10,12 @@
 [ext_resource type="Resource" uid="uid://gnfoxd80fijb" path="res://items/knife.tres" id="8_h6ic6"]
 [ext_resource type="Resource" uid="uid://bg0mo3m1grggs" path="res://items/job_application.tres" id="9_3jqrf"]
 [ext_resource type="Resource" uid="uid://f3ebk6iooatw" path="res://items/apple.tres" id="10_cvj0i"]
+[ext_resource type="AudioStream" uid="uid://bwgfh3kupw08p" path="res://music/ruins.mp3" id="11_h6ic6"]
 
 [node name="TestingZone" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_5sgyj")
+music = ExtResource("11_h6ic6")
 
 [node name="TempTilemap" parent="." instance=ExtResource("1_k82df")]
 y_sort_enabled = true

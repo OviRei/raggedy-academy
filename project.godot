@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+AudioManager="*res://00_globals/global_audio_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 LevelManager="*res://00_globals/global_level_manager.gd"
 PlayerManager="*res://00_globals/global_player_manager.gd"

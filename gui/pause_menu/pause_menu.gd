@@ -28,13 +28,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func show_pause_menu():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = true
+	AudioManager.mute_music(true)
 	visible = true
 	is_paused = true
 	shown.emit()
 	
 func hide_pause_menu():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
+	AudioManager.mute_music(false)
 	visible = false
 	is_paused = false
 	hidden.emit()
