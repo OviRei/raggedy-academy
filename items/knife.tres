@@ -13,5 +13,4 @@ script = ExtResource("1_q5u4v")
 name = "Knife"
 description = "Mmmh~ knife"
 texture = SubResource("AtlasTexture_q5u4v")
-effects = Array[ExtResource("1_crodb")]([])
 metadata/_custom_type_script = "uid://xuk6clj4hu28"

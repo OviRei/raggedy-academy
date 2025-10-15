@@ -8,9 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_ia5ia"]
 script = ExtResource("2_rj1s8")
-heal_amount = 1
 audio = ExtResource("2_ia5ia")
-use_description = ""
 metadata/_custom_type_script = "uid://rxcmss8b8nkr"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xmv7l"]

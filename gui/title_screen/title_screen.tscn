@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://kbxctl3gxw2p"]
+
+[ext_resource type="Script" uid="uid://cnvf8uoagxi8p" path="res://gui/title_screen/title_screen.gd" id="1_d1fbl"]
+[ext_resource type="Script" uid="uid://dwsx8sqwpo4wc" path="res://areas/scripts/level.gd" id="1_idgp0"]
+[ext_resource type="AudioStream" uid="uid://whgp0m28rstm" path="res://music/Start Menu.mp3" id="2_3u4et"]
+[ext_resource type="Texture2D" uid="uid://cy1klu08n1snh" path="res://gui/title_screen/sprites/red.png" id="2_d3ybp"]
+[ext_resource type="Texture2D" uid="uid://dbqijfjqa2kgx" path="res://gui/title_screen/sprites/purple.png" id="3_k7v1h"]
+[ext_resource type="Texture2D" uid="uid://lorsv381i72x" path="res://gui/title_screen/sprites/grey.jpg" id="4_1n1mm"]
+[ext_resource type="AudioStream" uid="uid://du61ekriguj3n" path="res://gui/pause_menu/ui_click.wav" id="5_e1of6"]
+[ext_resource type="Texture2D" uid="uid://dggt64sk23i4k" path="res://gui/title_screen/sprites/frends.jpg" id="5_idgp0"]
+[ext_resource type="AudioStream" uid="uid://30masv73uslg" path="res://gui/pause_menu/ui_focus.wav" id="5_t57bk"]
+[ext_resource type="PackedScene" uid="uid://c0jk3no24lhu2" path="res://areas/player_spawn/player_spawn.tscn" id="6_1n1mm"]
+[ext_resource type="Script" uid="uid://cxlyiykwj5i4a" path="res://gui/title_screen/background.gd" id="6_vsruy"]
+
+[node name="TitleScreen" type="Node2D"]
+process_mode = 3
+y_sort_enabled = true
+script = ExtResource("1_idgp0")
+music = ExtResource("2_3u4et")
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("6_1n1mm")]
+position = Vector2(224, 125)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_d1fbl")
+button_focus_audio = ExtResource("5_t57bk")
+button_press_audio = ExtResource("5_e1of6")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backgrounds" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RedBackground" type="TextureRect" parent="CanvasLayer/Control/Backgrounds"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d3ybp")
+expand_mode = 1
+script = ExtResource("6_vsruy")
+background_name = "Red"
+
+[node name="PurpleBackground" type="TextureRect" parent="CanvasLayer/Control/Backgrounds"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -14.0
+offset_right = 50.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_k7v1h")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("6_vsruy")
+background_name = "Purple"
+title_pos_x = 217.0
+title_pos_y = 12.0
+button_container_pos_x = 272.0
+button_container_pos_y = 51.0
+
+[node name="GreyBackground" type="TextureRect" parent="CanvasLayer/Control/Backgrounds"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -31.0
+offset_right = 57.0
+offset_bottom = 8.96472
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_1n1mm")
+expand_mode = 5
+stretch_mode = 4
+flip_h = true
+script = ExtResource("6_vsruy")
+background_name = "Grey"
+title_pos_x = 223.0
+title_pos_y = 6.0
+button_container_pos_x = 283.0
+button_container_pos_y = 41.0
+
+[node name="FriendsBackground" type="TextureRect" parent="CanvasLayer/Control/Backgrounds"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_right = 88.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_idgp0")
+expand_mode = 1
+script = ExtResource("6_vsruy")
+background_name = "Friends"
+title_pos_x = 16.0
+title_pos_y = 8.0
+button_container_pos_x = 16.0
+button_container_pos_y = 48.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.486275)
+
+[node name="Title" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 224.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 32
+text = "Raggedy Academy"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -78.0
+offset_right = -118.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="NewGameButton" type="Button" parent="CanvasLayer/Control/ButtonContainer"]
+layout_mode = 2
+text = "NEW GAME"
+
+[node name="LoadGameButton" type="Button" parent="CanvasLayer/Control/ButtonContainer"]
+layout_mode = 2
+text = "LOAD GAME"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/Control/ButtonContainer"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control/ButtonContainer"]
+layout_mode = 2
+text = "QUIT"

@@ -5,7 +5,6 @@ class_name ItemPickup extends Node2D
 
 @onready var area_2d: Area2D = $Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var is_picked_up_data: PersistentDataHandler = $IsPickedUp
 
 var is_picked_up : bool = false
@@ -36,10 +35,9 @@ func _on_body_entered( b ) -> void:
 
 func item_picked_up() -> void:
 	area_2d.body_entered.disconnect( _on_body_entered )
-	audio_stream_player_2d.play()
+	SodaAudioManager.play_sfx("res://items/item_pickups/item_pickup.wav")
 	visible = false
 	is_picked_up_data.set_value()
-	await audio_stream_player_2d.finished
 	queue_free()
 	pass
 

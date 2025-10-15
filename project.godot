@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Raggedy Academy"
-run/main_scene="uid://cqdyeolp88q1k"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="uid://kbxctl3gxw2p"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -20,14 +20,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AudioManager="*res://00_globals/global_audio_manager.gd"
+SodaAudioManager="*res://addons/SodaAudioManager/Scenes/soda_audio_manager.scn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-LevelManager="*res://00_globals/global_level_manager.gd"
 PlayerManager="*res://00_globals/global_player_manager.gd"
+LevelManager="*res://00_globals/global_level_manager.gd"
+SaveManager="*res://00_globals/global_save_manager.gd"
 InteractionManager="*res://00_globals/interaction_manager.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 SceneTransition="*res://gui/scene_transition/scene_transition.tscn"
-SaveManager="*res://00_globals/global_save_manager.gd"
 PauseMenu="*res://gui/pause_menu/pause_menu.tscn"
 
 [dialogic]
@@ -49,13 +49,14 @@ glossary/default_case_sensitive=true
 
 window/size/viewport_width=448
 window/size/viewport_height=252
-window/size/borderless=true
 window/size/sharp_corners=true
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/SodaAudioManager/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
@@ -72,8 +73,8 @@ folder_colors={
 
 [gui]
 
-theme/custom_font="uid://bn6ecov77paep"
 theme/default_font_antialiasing=0
+theme/custom_font="uid://bn6ecov77paep"
 
 [input]
 

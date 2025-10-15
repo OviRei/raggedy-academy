@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://83hl847sgur2"]
+[gd_scene load_steps=9 format=3 uid="uid://83hl847sgur2"]
 
 [ext_resource type="Script" uid="uid://de31613q5klym" path="res://gui/pause_menu/pause_menu.gd" id="1_rwe7i"]
+[ext_resource type="PackedScene" uid="uid://dryt0xj443yen" path="res://gui/settings_menu/settings_menu.tscn" id="2_nbojc"]
 [ext_resource type="Texture2D" uid="uid://btf4t5wq6ss18" path="res://items/sprites/items.png" id="2_u4fh8"]
 [ext_resource type="PackedScene" uid="uid://b4hcfxqs58xwg" path="res://gui/inventory/inventory_slot.tscn" id="3_ddhtv"]
 [ext_resource type="Script" uid="uid://c0rpuw653xd8u" path="res://gui/inventory/scripts/inventory_ui.gd" id="3_t7424"]
@@ -65,12 +66,23 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "LOAD"
 
+[node name="SettingsButton" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "SETTINGS"
+
+[node name="MainMenuButton" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "MAIN MENU"
+
 [node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "QUIT
-"
+text = "QUIT"
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 layout_mode = 0
@@ -124,5 +136,5 @@ offset_right = 386.0
 offset_bottom = 175.0
 autowrap_mode = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-max_polyphony = 4
+[node name="SettingsMenu" parent="." instance=ExtResource("2_nbojc")]
+visible = false

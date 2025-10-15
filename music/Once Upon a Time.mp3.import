@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://by8m72pktnnc4"
+path="res://.godot/imported/Once Upon a Time.mp3-d57173654d1969de41553496b51c0a0c.mp3str"
+
+[deps]
+
+source_file="res://music/Once Upon a Time.mp3"
+dest_files=["res://.godot/imported/Once Upon a Time.mp3-d57173654d1969de41553496b51c0a0c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

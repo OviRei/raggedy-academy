@@ -7,7 +7,7 @@ func _ready() -> void:
 	self.y_sort_enabled = true
 	PlayerManager.set_as_parent( self )
 	LevelManager.level_load_started.connect( _free_level )
-	AudioManager.play_music( music, -0.8, true )
+	SodaAudioManager.play_music( music.resource_path, true, 1.0 )
 
 func _free_level() -> void:
 	PlayerManager.unparent_player( self )

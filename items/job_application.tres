@@ -13,5 +13,4 @@ script = ExtResource("1_6pxv7")
 name = "Job Application"
 description = "NOW WERK WERK LIKE A JOB APPLICATION"
 texture = SubResource("AtlasTexture_6pxv7")
-effects = Array[ExtResource("1_aydw5")]([])
 metadata/_custom_type_script = "uid://xuk6clj4hu28"

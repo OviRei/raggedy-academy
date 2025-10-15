@@ -1,0 +1,363 @@
+[gd_scene load_steps=11 format=3 uid="uid://dryt0xj443yen"]
+
+[ext_resource type="Script" uid="uid://djs4217ihhb7o" path="res://gui/settings_menu/settings_menu.gd" id="1_rgsgl"]
+[ext_resource type="Script" uid="uid://c005r17ia4d6h" path="res://gui/settings_menu/input_mapper_button.gd" id="2_cehoh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cehoh"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fasm0"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgsgl"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbnwq"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rgsgl"]
+color = Color(0.37036446, 0.3703645, 0.37036446, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_cehoh"]
+color = Color(0.31982252, 0.5272523, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fasm0"]
+color = Color(0.23084351, 0.45064098, 0.9999897, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4geqv"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rgsgl")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043039158, 0.04303915, 0.04303915, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 112.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 32.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+
+[node name="General" type="Button" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cehoh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fasm0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rgsgl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vbnwq")
+flat = true
+metadata/_tab_index = 0
+
+[node name="MusicLabel" type="Label" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 97.0
+offset_bottom = 24.0
+text = "Music Volume"
+
+[node name="UILabel" type="Label" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 97.0
+offset_bottom = 88.0
+text = "UI Volume"
+
+[node name="SFXLabel" type="Label" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 97.0
+offset_bottom = 56.0
+text = "SFX Volume"
+
+[node name="MusicSlider" type="HSlider" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 216.0
+offset_bottom = 40.0
+theme_override_styles/slider = SubResource("StyleBoxLine_rgsgl")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_cehoh")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_fasm0")
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
+
+[node name="UISlider" type="HSlider" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 88.0
+offset_right = 216.0
+offset_bottom = 104.0
+theme_override_styles/slider = SubResource("StyleBoxLine_rgsgl")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_cehoh")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_fasm0")
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
+
+[node name="SFXSlider" type="HSlider" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 216.0
+offset_bottom = 72.0
+theme_override_styles/slider = SubResource("StyleBoxLine_rgsgl")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_cehoh")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_fasm0")
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
+
+[node name="WindowLabel" type="Label" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 340.0
+offset_bottom = 24.0
+text = "Windowed Mode"
+
+[node name="WindowOptions" type="OptionButton" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 24.0
+offset_right = 418.0
+offset_bottom = 48.0
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="LanguageLabel" type="Label" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 52.0
+offset_right = 340.0
+offset_bottom = 68.0
+text = "Language"
+
+[node name="LanguageOptions" type="OptionButton" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 72.0
+offset_right = 418.0
+offset_bottom = 96.0
+selected = 0
+item_count = 4
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Bangla"
+popup/item_1/id = 1
+popup/item_2/text = "Shona"
+popup/item_2/id = 2
+popup/item_3/text = "Farsi"
+popup/item_3/id = 3
+
+[node name="MuteLabel" type="Label" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 152.0
+offset_bottom = 128.0
+text = "Mute When Unfocussed"
+
+[node name="MuteButton" type="CheckButton" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 108.0
+offset_right = 226.0
+offset_bottom = 132.0
+
+[node name="Keyboard" type="Button" parent="TabContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cehoh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fasm0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4geqv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vbnwq")
+flat = true
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keyboard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.25
+offset_top = -76.0
+offset_right = 138.25
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Keyboard/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Label" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Move Up"
+
+[node name="Move Up Input" type="Button" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+script = ExtResource("2_cehoh")
+action_name = "Up"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Label" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Move Down"
+
+[node name="Move Up Input" type="Button" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+script = ExtResource("2_cehoh")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Label" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Move Left"
+
+[node name="Move Up Input" type="Button" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+script = ExtResource("2_cehoh")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Label" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Move Right"
+
+[node name="Move Up Input" type="Button" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+script = ExtResource("2_cehoh")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Label" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Interact"
+
+[node name="Move Up Input" type="Button" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+script = ExtResource("2_cehoh")
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Label" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Pause"
+
+[node name="Move Up Input" type="Button" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+script = ExtResource("2_cehoh")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Label" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Switch Character"
+
+[node name="Move Up Input" type="Button" parent="TabContainer/Keyboard/ScrollContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+script = ExtResource("2_cehoh")
+
+[node name="Controller" type="Button" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cehoh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fasm0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4geqv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vbnwq")
+flat = true
+metadata/_tab_index = 2
+
+[node name="CloseButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -31.0
+offset_right = -17.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+
+[node name="SaveApplyButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -31.0
+offset_right = 90.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Save and Apply"
+
+[connection signal="value_changed" from="TabContainer/General/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/General/UISlider" to="." method="_on_ui_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/General/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="item_selected" from="TabContainer/General/WindowOptions" to="." method="_on_window_options_item_selected"]
